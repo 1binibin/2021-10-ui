@@ -7,13 +7,9 @@ var $btNext = $wrapper.find('bt-next');
 var interval, n = 0, speed = 2000, aniSpeed = 500, cnt = $slide.find('.slide').length;
 
 /************** user function *************/
-function chgPager(el, idx) {
-
-}
-
 function ani(slideEl, pagerEl, speed, idx) {
 	$(pagerEl).removeClass('active');
-	$(pagerEl).eq(idx).addClass('active');
+	$(pagerEl).eq(idx === cnt - 1 ? 0 : idx).addClass('active');
 	$(slideEl).stop().animate({'left': -idx * 100+'%'}, speed);
 }
 
@@ -41,12 +37,18 @@ function onPagerClick() {
 }
 
 function onPrev() {
+    if(n === 0){
+        $slide.css('left', -(cnt - 1)*100 +'%');
+    }
     n = (n === 0) ? cnt -2 : n - 1;
     ani($slide, $pager, aniSpeed, n)
 }
 
 function onNext() {
-    n = (n === cnt -2) ? 0 : n + 1;
+    if(n === cnt - 1) {
+        $slide.css('left', 0);
+    }
+    n = (n === cnt -1) ? 1 : n + 1;
     ani($slide, $pager, aniSpeed, n)
 }
 
