@@ -1,19 +1,19 @@
 /*************** global init *****************/
-var $slide01 = $('.wrapper1 .slide-wrap');
-var interval01, n01 = 1;
+var $slide = $('.wrapper1 .slide-wrap');
+var interval, n = 1, cnt = $slide.find('.slide').lenght;
 
 /*************** user function  *****************/
 
 
 /*************** event callback *****************/
-function onSet01() {
-    $slide01.stop().animate({'left': -(n01*100)+'%'}, 1000, function () {
-        n01++;
+function onSet() {
+    $slide.stop().animate({'left': -(n * 100)+'%'}, 1000, function () {
+        ++n;
     });
 }
 
 /*************** event init *****************/
-interval01 = setInterval(onSet01, 3000);
+interval = setInterval(onSet, 3000);
 
 /*************** start init *****************/
 
