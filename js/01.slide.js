@@ -1,6 +1,7 @@
 /*************** global init *****************/
-var $slide = $('.wrapper1 .slide-wrap');
-var $pager = $('.wrapper1 .pager');
+var $wrapper = $('.wrapper1');
+var $slide = $wrapper.find('.slide-wrap');
+var $pager = $wrapper.find('.wrapper1 .pager');
 var interval, n = 1,speed = 2000, aniSpeed = 500, cnt = $slide.find('.slide').lenght;
 
 /*************** user function  *****************/
@@ -10,8 +11,8 @@ function chgPager(el, idx) {
 }
 
 /*************** event callback *****************/
-function onSet() {
-    $slide.stop().animate({'left': -n * 100+'%'}, aniSpeed, function () {
+function onAni() {
+    $slide.stop().animate({'left': -n * 100+'%'}, aniSpeed, function() {
         if(n === cnt -1) {
             $slide.css('left', 0);
             chgPager($pager, 0);
@@ -28,11 +29,17 @@ function onEnter() {
 }
 
 function onLeave() {
-    interval = setInterval(onSet, speed);
+    interval = setInterval(onAni, speed);
+}
+
+function onPagerClick() {
+    n = $(this).index();
+    onAni();
 }
 /*************** event init *****************/
-interval = setInterval(onSet, speed);
-$slide.mouseenter(onEnter).mouseleave(onLeave)
+interval = setInterval(onAni, speed);
+$wrapper.mouseenter(onEnter).mouseleave(onLeave)
+$pager.click(onPagerClick);
 
 /*************** start init *****************/
 
