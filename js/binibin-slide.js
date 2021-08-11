@@ -84,7 +84,7 @@ function Slide(_parent, _opt) {
 
     /************* pagination *****************/
     if(this.usePagination) {
-        this.pagers = this.wrapper.find(opt.Pagination.el);
+        this.pagers = this.wrapper.find(opt.pagination.el);
         var cnt = (this.effect === 'fadeType') ? this.slide.length : this.slide.length -1
         for(var i=0; i < cnt; i++){
             $('<div> ●</div>').appendTo(this.pagers).click(this.onPager.bind(this));
@@ -127,7 +127,7 @@ Slide.prototype.onNext = function() {
     }
     else{
         if(this.idx === this.last){
-            this.wrap.css('left', 0);
+            this.wrap.css(this.effect ==='horizontalType' ? 'left':'top', 0);
             this.idx = 0;
         }
         this.idx++;
@@ -141,7 +141,7 @@ Slide.prototype.onPrev = function() {
     }
     else{
         if( idx === 0 ) { 
-            this.wrap.css('top', - last * 100+'%');
+            this.wrap.css(this.effect ==='horizontalType' ? 'left':'top', 0);
             this.idx = this.last;
         }
         this.idx--;
