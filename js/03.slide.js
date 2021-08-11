@@ -14,7 +14,7 @@ var last = $slide.length - 1;    // $('.slide')의 마지막 index
 /************** user function *************/
 function ani() {
     $slide.eq(idx).css( {'z-index': ++depth, 'opacity':0} );
-    $slide.eq(idx).stop().animate({ 'opacity': 1 }, speed)
+    $slide.eq(idx).stop().animate({ 'opacity': 1 }, speed);
     $pager.removeClass('active');
     $pager.eq(idx).addClass('active');
 }
