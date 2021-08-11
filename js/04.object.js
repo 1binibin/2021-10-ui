@@ -26,8 +26,33 @@ Box.prototype.init = function() {
 
 /**************************** 실행 ***************************/
 var box = new Box('.wrapper', '200px', '200px', '#f00');
+console.log(box);
 box.init();
+
 var box2 = new Box('.wrapper', '300px', '300px', '#0f0');
 box2.init();
+
 var box3 = new Box('.wrapper', '100px', '100px', '#00f');
 box3.init();
+
+
+
+function Test() {
+	var a = 10;
+	this.b = 20;
+}
+
+var test = new Test();
+var test2 = new Test();
+test2.b = 50;
+console.log(test, test2);
+console.log(test === test2);
+
+var obj = {
+	a: '10',
+	b: '20'
+}
+var obj2 = obj; // 같은놈
+obj2.b = '50';
+console.log(obj, obj2);
+console.log(obj2 === obj);
