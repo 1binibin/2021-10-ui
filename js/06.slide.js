@@ -2,6 +2,10 @@ var slide = new Slide('#slide1', {
 	autoPlay: true,
 	effect: 'fade',
     autoPlaySpeed: 1000,
+    navigation: {
+        prev: '.bt-prev',
+        next: '.bt-next',
+    },
 	speed: 500
 });
 var slide2 = new Slide('#slide2', {
