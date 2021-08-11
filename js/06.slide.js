@@ -1,0 +1,1 @@
+var slide = new Slide();
