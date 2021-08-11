@@ -18,7 +18,10 @@ function Slide(_parent, _opt) {
 }
 
 Slide.prototype.init = function() {
-        this.wrap.addClass(this.effect);
+    this.wrap.addClass(this.effect);
+    if(this.effect === 'fadeType'){
+        this.slide.eq(0).clone().appendTo(this.wrap).removeClass('slide'); // Dummy 생성(높이 생성)
+    }
 }
 
 
