@@ -11,6 +11,9 @@ function Slide(_parent, _opt) {
 	this.speed = Number(opt.speed) || 500;
 	this.autoPlay = opt.autoPlay === false ? false : true;
 	this.autoPlaySpeed = Number(opt.autoPlaySpeed) || 3000;
+    this.useNavigation = opt.navigation && opt.navigation.prev && opt.navigation.next ? true : false;
+    this.usePagiNation = opt.Pagination && opt.Pagination.el ? true : false;
+
 	if(this.effect.toLowerCase() !== 'horizontal' && this.effect.toLowerCase() !== 'vertical' && this.effect.toLowerCase() !== 'fade') {
 		this.effect = 'horizontal';
 	}
@@ -18,25 +21,26 @@ function Slide(_parent, _opt) {
 	this.wrap.addClass(this.effect);
 
 
+
     /******* horiInit *******/
 	var horiInit= function() {
 		this.last = this.slide.length - 1;
 
-		this.wrap.mouseenter(onEnter).mouseleave(onLeave);
+		this.wrapper.mouseenter(onEnter).mouseleave(onLeave);
 		if(this.autoPlay)this.interval = setInterval(this.onNext.bind(this), this.autoPlaySpeed);
 	}.bind(this)
 
 	/******* fadeInit *******/
 	var fadeInit = function () {
 		this.last = this.slide.length - 1;
-        this.wrap.mouseenter(onEnter).mouseleave(onLeave);
+        this.wrapper.mouseenter(onEnter).mouseleave(onLeave);
 		this.interval = setInterval(this.onNext.bind(this), this.autoPlaySpeed);
 	}.bind(this)
 
 	/******* vertInit *******/
 	var vertInit = function () {
 		this.last = this.slide.length - 1;
-        this.wrap.mouseenter(onEnter).mouseleave(onLeave);
+        this.wrapper.mouseenter(onEnter).mouseleave(onLeave);
 		if(this.autoPlay)this.interval = setInterval(this.onNext.bind(this), this.autoPlaySpeed);
 	}.bind(this)
 
@@ -70,6 +74,22 @@ function Slide(_parent, _opt) {
 		vertInit();
 	}
 	
+    /******* navigation *******/
+    if(this.useNavigation) {
+        this.prev = this.wrapper.find(opt.navigation.prev);
+        this.next = this.wrapper.find(opt.navigation.next);
+        this.prev.click(this.onPrev.bind(this));
+        this.next.click(this.onNext.bind(this));
+    }
+
+    /************* pagination *****************/
+    if(this.usePagination) {
+        this.pagers = this.wrapper.find(opt.Pagination.el);
+        var cnt = (this.effect === 'fadeType') ? this.slide.length : this.slide.length -1
+        for(var i=0; i < cnt; i++){
+            $('<div> ●</div>').appendTo(this.pagers).click(this.onPager.bind(this));
+        }
+    }
 	
 }
 /* *****************************  메서드 ******************************* */
@@ -77,16 +97,26 @@ Slide.prototype.ani = function() {
     switch(this.effect){
         case 'horizontalType':
             this.wrap.stop().animate({ 'left': -this.idx * 100+'%' }, this.speed);
-
+            if(this.usePagiNation){
+                this.pagers.children('div').removeClass('active');
+                this.pagers.children('div').eq(this.idx === this.last ? 0 : this.idx).addClass('active');
+            }
+            
         break;
         case 'verticalType':
             this.wrap.stop().animate({ 'top': -this.idx * 100+'%' }, this.speed);
-
+            if(this.usePagiNation) {
+                this.pagers.children('div').removeClass('active');
+                this.pagers.children('div').eq(this.idx === this.last ? 0 : this.idx).addClass('active');
+            }
         break;
         case 'fadeType':
             this.slide.eq(this.idx).css( {'z-index': ++this.depth, 'opacity':0} );
             this.slide.eq(this.idx).stop().animate({ 'opacity': 1 }, this.speed);
-
+            if(this.usePagiNation) {
+                this.pagers.children('div').removeClass('active');
+                this.pagers.children('div').eq(this.idx).addClass('active');
+            }
         break;
     }
 }
@@ -106,11 +136,23 @@ Slide.prototype.onNext = function() {
 }
 
 Slide.prototype.onPrev = function() {
+    if(this.effect === 'fadeType') {
+        this.idx = this.idx === this.last ? 0 : this.idx + 1;
+    }
+    else{
+        if( idx === 0 ) { 
+            this.wrap.css('top', - last * 100+'%');
+            this.idx = this.last;
+        }
+        this.idx--;
 
+    }
+    this.ani();
 }
 
-Slide.prototype.onPager = function() {
-
+Slide.prototype.onPager = function(e) {
+    this.idx = $(e.target).index();
+    this.ani();
 }
 
 
