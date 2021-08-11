@@ -1,6 +1,8 @@
 function Slide(_parent, _opt) {
     var opt = _opt || {};
-    this.parent = _parent;
+    this.wrapper = $(_parent);
+    this.wrap = this.wrapper.find('.slide-wrap')
+    this.slide = this.wrap.find('.slide')
     this.effect = opt.effect || 'horizontal';
     this.speed = Number(opt.speed) || 500;
     this.autoPlay = opt.autoPlay === false ? false : true;
@@ -11,16 +13,12 @@ function Slide(_parent, _opt) {
         {
             this.effect = 'horizontal'
         }
-    if(
-        this.effect.toLowerCase() !== 'horizontal' && this.effect.toLowerCase() !== 'vertical' && this.effect.toLowerCase() !== 'fade') 
-        {
-            this.effect = 'horizontal'
-        }
+    this.effect += 'Type';
     this.init();
 }
 
 Slide.prototype.init = function() {
-console.log(this);
+        this.wrap.addClass(this.effect);
 }
 
 

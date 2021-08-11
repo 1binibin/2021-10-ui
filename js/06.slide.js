@@ -1,5 +1,5 @@
-var slide = new Slide('.wrapper', {
+var slide = new Slide('.slide-wrapper', {
     autoPlay: true,
-    effect:'myStyle',
-    speed: 'myStyle'
+    effect:'fade',
+    speed: 50000
 }) ;
