@@ -12,7 +12,7 @@ Box.prototype.init = function() {
     style += 'transition: all 0.5s; ';
     var html = '<div class="box" style="'+style+'"></div>';
     //document.querySelector(this.parent).innerHTML += html;
-    $(html).appendTo(this.parent).mouseenter(onMouseOver).mouesleave(onMouseLeave);
+    $(html).appendTo(this.parent).mouseenter(onMouseOver).mouseleave(onMouseLeave);
 
 
     function onMouseOver() {
