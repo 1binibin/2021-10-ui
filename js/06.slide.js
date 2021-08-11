@@ -1,5 +1,5 @@
 var slide = new Slide('.slide-wrapper', {
-    autoPlay: false,
-    effect:'vertical',
-    speed: 50000
-}) ;
+	autoPlay: false,
+	effect: 'verticalType',
+	speed: 50000
+});

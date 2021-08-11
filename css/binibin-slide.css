@@ -1,7 +1,7 @@
 .slide-wrapper {position: relative; overflow: visible; border-top: 2px solid red; border-bottom: 2px solid red;}
-.slide-wrapper .swiper-wrap {position: relative; z-index: 1;}
-.slide-wrapper .swiper-wrap.horizontalType {display: flex;}
-.slide-wrapper .swiper-wrap.verticalType {position:absolute; top: 0; left: 0;}
-.slide-wrapper .swiper-wrap.fadeType {}
-.slide-wrapper .swiper-wrap.fadeType .slide {position: absolute; top: 0; left: 0; width: 100%;}
-.slide-wrapper .swiper-wrap.fadeType .slide:first-child {z-index: 1;}
+.slide-wrapper .slide-wrap {position: relative; z-index: 1;}
+.slide-wrapper .slide-wrap.horizontalType {display: flex;}
+.slide-wrapper .slide-wrap.verticalType {position: absolute; top: 0; left: 0;}
+.slide-wrapper .slide-wrap.fadeType {}
+.slide-wrapper .slide-wrap.fadeType .slide {position: absolute; top: 0; left: 0; width: 100%;}
+.slide-wrapper .slide-wrap.fadeType .slide:first-child {z-index: 1;}
