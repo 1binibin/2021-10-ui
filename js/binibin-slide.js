@@ -12,7 +12,7 @@ function Slide(_parent, _opt) {
 	this.autoPlay = opt.autoPlay === false ? false : true;
 	this.autoPlaySpeed = Number(opt.autoPlaySpeed) || 3000;
     this.useNavigation = opt.navigation && opt.navigation.prev && opt.navigation.next ? true : false;
-    this.usePagiNation = opt.Pagination && opt.Pagination.el ? true : false;
+    this.usePagination = opt.Pagination && opt.Pagination.el ? true : false;
 
 	if(this.effect.toLowerCase() !== 'horizontal' && this.effect.toLowerCase() !== 'vertical' && this.effect.toLowerCase() !== 'fade') {
 		this.effect = 'horizontal';
@@ -97,7 +97,7 @@ Slide.prototype.ani = function() {
     switch(this.effect){
         case 'horizontalType':
             this.wrap.stop().animate({ 'left': -this.idx * 100+'%' }, this.speed);
-            if(this.usePagiNation){
+            if(this.usePagination){
                 this.pagers.children('div').removeClass('active');
                 this.pagers.children('div').eq(this.idx === this.last ? 0 : this.idx).addClass('active');
             }
@@ -105,7 +105,7 @@ Slide.prototype.ani = function() {
         break;
         case 'verticalType':
             this.wrap.stop().animate({ 'top': -this.idx * 100+'%' }, this.speed);
-            if(this.usePagiNation) {
+            if(this.usePagination) {
                 this.pagers.children('div').removeClass('active');
                 this.pagers.children('div').eq(this.idx === this.last ? 0 : this.idx).addClass('active');
             }
@@ -113,7 +113,7 @@ Slide.prototype.ani = function() {
         case 'fadeType':
             this.slide.eq(this.idx).css( {'z-index': ++this.depth, 'opacity':0} );
             this.slide.eq(this.idx).stop().animate({ 'opacity': 1 }, this.speed);
-            if(this.usePagiNation) {
+            if(this.usePagination) {
                 this.pagers.children('div').removeClass('active');
                 this.pagers.children('div').eq(this.idx).addClass('active');
             }
