@@ -1,6 +1,6 @@
 /**
  * Event Bubbling
- * event.preventDefault();
+ * event.preventDefault();      //JS, wheel에 적용은 :59
  * event.stopPropagation();
  */
 
@@ -38,7 +38,7 @@ function onWheel(e) {
 }
 //34 ~ 35을 이하 내용과 같이 변경 가능(맥 사용시 끊김현상 제거) -->toggle
 //$('html, body').stop().animate({'scrollTop': top[idx]}, 500);
-//setTimeout(function(){ isWheel= true }, 1000)
+//setTimeout(function(){ isWheel= true }, 1000) + isWheel = false --> if문 밖으로.
 function onWrapperClick(e) {
 	console.log('wrapper');
 	console.log(e.pageX, e.pageY);
@@ -56,7 +56,7 @@ function onBoxClick(e) {
 
 
 /*************** event init ***************/
-window.addEventListener('wheel', onWheel, { passive: false }); // passive: false; 기본기능막기
+window.addEventListener('wheel', onWheel, { passive: false }); // wheel:JS만 가능 passive: false; 기본기능막기
 
 $('.wrapper').click(onWrapperClick);
 $('.wrapper .content-wrap').click(onContentWrapClick);
