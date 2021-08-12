@@ -14,6 +14,20 @@ function onScroll(e) {
     // console.log(e);
     // console.log(window.scrollY);        //js
     // console.log($(this).scrollTop());   //jQyery
+    // $().offset() --> 문서의 시작점부터 내 위치를 절대값으로 나타냄(리턴값: 객체{'top','left'})
+/*     console.log($('h1.title').eq(0).offset().top ); 0번의 top값
+    console.log($('h1.title').eq(1).offset().top );
+    console.log($('h1.title').eq(2).offset().top );
+    console.log($('h1.title').eq(3).offset().top );
+    console.log($('h1.title').eq(4).offset().top ); */
+    var guideTop = $(this).scrollTop() + $(this).outerHeight();
+    $('h1.title').each(function(v, i) {
+        if(guideTop - 200 > $(this).offset().top) { $(this).addClass('active'); }
+    });
+    $('.box').each(function(v, i) {
+        if(guideTop - 200 > $(this).offset().top) { $(this).addClass('active'); }
+    })
+
 }
 
 function onWheel(e) {
@@ -32,7 +46,7 @@ function onResize(e) {
 
 /*************** event init *****************/
 //window.addEventListener('scroll',onScroll);
-$(window).scroll(onScroll);
+$(window).scroll(onScroll).trigger('scroll');
 
 // window.addEventListener('wheel', onWheel)
 // $(window).on('wheel', onWheel);
