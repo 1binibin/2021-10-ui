@@ -1,7 +1,10 @@
 /**
  * Event Bubbling
- * event.preventDefault();      //JS, wheel에 적용은 :59
- * event.stopPropagation();
+ * event.preventDefault();      //JS객체, 이벤트를 막아라! wheel에 적용은 :59
+ * html에 onclick 으로 event를 주면 막힘. 브라우저에서 막아놓음           사용하려면 61번 참조 
+ * 
+ * event.stopPropagation();     //
+ * scrolltop : ????
  */
 
 /*************** global init **************/
@@ -56,7 +59,8 @@ function onBoxClick(e) {
 
 
 /*************** event init ***************/
-window.addEventListener('wheel', onWheel, { passive: false }); // wheel:JS만 가능 passive: false; 기본기능막기
+window.addEventListener('wheel', onWheel, { passive: false });
+ // wheel:JS로만 가능 passive: false; 기본기능막기
 
 $('.wrapper').click(onWrapperClick);
 $('.wrapper .content-wrap').click(onContentWrapClick);

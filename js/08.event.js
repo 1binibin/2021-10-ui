@@ -1,6 +1,12 @@
 /**
- * scroll(스크롤바), wheel(마우스휠), resize(창 크기)
+ * Scroll : 스크롤바 이동시  scrollY
+ * Wheel  : 마우스 휠 사용시 deltaY, deltaX -- 브라우저마다 다름.
+ * Resize : 
  * 
+ * offset(): 객체를 리턴해줌. top,left 에서 현재 위치값을 절대값으로 알려줌
+ *            $(this).offset().top -> this의 top에서 현재의 위치값
+ * .scrollTop(): 선택한 요소에 세로 스크롤 값을 가져옵니다.
+ * -----------본문 주석내용 확인~!--------------
  */
 
 /*************** global init *****************/
