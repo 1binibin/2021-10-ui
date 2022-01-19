@@ -1,14 +1,11 @@
-/*************** global init **************/
 var $wrapper = $('.wrapper1');
 var $slide = $wrapper.find('.slide-wrap');
 var $btPrev = $wrapper.find('.bt-prev');
 var $btNext = $wrapper.find('.bt-next');
 var idx = 0;        // animation이 움직일 값의 인자 0, -100%, -200%........
-// var gap = 2000;     // setInterval의 간격
 var speed = 500;    // animation speed
 var last = $slide.find('.slide').length - 1;    // $('.slide')의 마지막 index
-console.log(last);
-/************** user function *************/
+
 function ani() {
     $slide.stop().animate({ 'left': -(idx * 100) + '%' }, speed);
     console.log(idx);
